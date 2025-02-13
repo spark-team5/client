@@ -2,3 +2,4 @@
 - **Based**: Vite, React, TypeScript
 - **Style**: Tailwind CSS, DaisyUI
 - **Code**: SWC, ESLint, Prettier
+- **State Management**: Redux
