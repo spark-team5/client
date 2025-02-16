@@ -6,7 +6,10 @@ import  PhotoGuidePage  from "@/pages/PhotoGuidePage";
 import  FaceResultPage  from "@/pages/FaceResultPage";
 import  DiaryEntryPage  from "@/pages/DiaryEntryPage";
 import  DiaryResultPage  from "@/pages/DiaryResultPage";
+import  DiaryHistoryPage  from "@/pages/DiaryHistoryPage";
 import { BambooProvider } from "@/context/BambooContext"; 
+
+ 
 /*
 import GeneratedDiaryPage from "@/pages/GeneratedDiaryPage";
 import DiaryHistoryPage from "@/pages/DiaryHistoryPage";   
@@ -22,6 +25,7 @@ export const AppRoutes = () => {
       <Route path="/face-result" element={<FaceResultPage />} />
       <Route path="/diary-entry" element={<DiaryEntryPage />} />
       <Route path="/diary-result" element={<DiaryResultPage />} />
+      <Route path="/diary-history" element={<DiaryHistoryPage />} />
       {/* <Route path="/diary/generated" element={<GeneratedDiaryPage />} />
       <Route path="/diary/history" element={<DiaryHistoryPage />} />    */}
          

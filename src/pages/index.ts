@@ -4,6 +4,7 @@ export { default as PhotoGuidePage } from "./PhotoGuidePage";
 export { default as FaceResultPage } from "./FaceResultPage";
 export { default as DiaryEntryPage } from "./DiaryEntryPage";
 export { default as DiaryResultPage } from "./DiaryResultPage";
+export { default as DiaryHistoryPage } from "./DiaryHistoryPage";
 
 /*DiaryResultPage
 export { default as GeneratedDiaryPage } from "./GeneratedDiaryPage";
