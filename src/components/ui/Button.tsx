@@ -4,20 +4,22 @@ interface ButtonProps {
   text: string;
   onClick?: () => void;
   className?: string;
-  size?: "small" | "medium" | "large"; // 크기 옵션 추가
+  size?: "small" | "medium" | "large";
 }
 
 const Button: React.FC<ButtonProps> = ({ text, onClick, className = "", size = "medium" }) => {
-  // 크기에 따른 DaisyUI 클래스 지정
+  // 크기에 따른 Tailwind 클래스 지정
   const sizeClasses = {
-    small: "btn-sm sm:btn-md md:btn-lg text-sm sm:text-base md:text-lg",
-    medium: "btn-md sm:btn-lg md:btn-xl text-base sm:text-lg md:text-xl",
-    large: "btn-lg sm:btn-xl md:btn-2xl text-lg sm:text-xl md:text-2xl",
+    small: "py-2 px-4 text-sm sm:py-3 sm:px-6 sm:text-base",
+    medium: "py-3 px-6 text-lg sm:py-4 sm:px-8 sm:text-xl",
+    large: "py-4 px-8 text-xl sm:py-5 sm:px-10 sm:text-2xl",
   };
 
   return (
     <button
-      className={`btn btn-neutral w-full max-w-xs sm:max-w-sm md:max-w-md rounded-lg font-semibold shadow-md hover:scale-105 active:scale-95 transition ${sizeClasses[size]} ${className}`}
+      className={`btn w-full max-w-xs sm:max-w-sm md:max-w-md font-semibold shadow-md rounded-lg 
+        !bg-black !text-white hover:!bg-gray-900 active:!bg-gray-800 transition ease-in-out duration-200
+        ${sizeClasses[size]} ${className}`}
       onClick={onClick}
     >
       {text}

@@ -21,13 +21,16 @@ const FaceResultPage: React.FC = () => {
   const { state: bambooState } = useBamboo();
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-white px-6">
-      <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center">오늘의 감정 분석</h1>
+    <div> 
+    <div className="flex flex-col items-center justify-center h-screen w-screen bg-white"> 
       <p className="text-center text-gray-600 text-sm sm:text-base md:text-lg">{bambooMessages[bambooState]}</p>
-      <img src={bambooImages[bambooState]} alt="죽순이 상태" className="w-[200px] h-[200px] object-cover mt-4" />
-      <div className="mt-6 w-full max-w-xs sm:max-w-md space-y-3"> 
-        <Button text="🏠 홈으로 가기" size="medium" onClick={() => navigate("/")} />
+      <img src={bambooImages[bambooState]} alt="죽순이 상태" className="w-[200px] h-[200px] object-cover mt-4 z-20" />
+      <div className="mt-6 w-full max-w-xs sm:max-w-md space-y-3 z-20"> 
+        <Button text="홈으로 가기" size="medium" onClick={() => navigate("/home")} />
       </div>
+      
+    </div> 
+    <div className="absolute bottom-0 left-0 right-0 w-full h-1/2 bg-gray-200 z-0"></div>
     </div>
   );
 };

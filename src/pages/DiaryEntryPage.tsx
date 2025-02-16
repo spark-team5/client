@@ -110,7 +110,7 @@ const DiaryEntryPage: React.FC = () => {
       {/* 🔘 버튼들 */}
       <div className="flex flex-col w-full max-w-xs sm:max-w-md space-y-3 mt-6">
         <Button text="일기 생성하기" size="small" onClick={handleSaveDiary} />
-        <Button text="뒤로 가기" size="small" onClick={() => navigate("/")} />
+        <Button text="뒤로 가기" size="small" onClick={() => navigate("/home")} />
       </div>
     </div>
   );

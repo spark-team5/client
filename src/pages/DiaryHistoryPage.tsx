@@ -2,55 +2,106 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/ui/Header";
 import Button from "@/components/ui/Button";
-
-// 일기 데이터 타입
-interface DiaryEntry {
-  id: number;
-  date: string;
-  emotion: string;
-  contentPreview: string;
-}
+import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
 const DiaryHistoryPage: React.FC = () => {
   const navigate = useNavigate();
+   
+  const [selectedMonth, setSelectedMonth] = useState({ year: 2025, month: 2 });
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // 📝 더미 일기 데이터 (추후 서버에서 불러올 수 있음)
-  const [diaryEntries, setDiaryEntries] = useState<DiaryEntry[]>([
-    { id: 1, date: "2024-02-01", emotion: "😢 슬픔", contentPreview: "오늘은 조금 힘든 하루였다..." },
-    { id: 2, date: "2024-02-03", emotion: "😊 기쁨", contentPreview: "오늘은 정말 좋은 일이 있었다!" },
-    { id: 3, date: "2024-02-05", emotion: "😡 화남", contentPreview: "짜증나는 일이 있었지만 잘 해결했다." },
-  ]);
+  // 📌 월 변경 함수
+  const changeMonth = (direction: "prev" | "next") => {
+    setSelectedMonth((prev) => {
+      let newYear = prev.year;
+      let newMonth = direction === "prev" ? prev.month - 1 : prev.month + 1;
+
+      if (newMonth === 0) {
+        newMonth = 12;
+        newYear -= 1;
+      } else if (newMonth === 13) {
+        newMonth = 1;
+        newYear += 1;
+      }
+
+      return { year: newYear, month: newMonth };
+    });
+  };
+
+  // 📝 임시 이미지 데이터 (월별로 다르게 설정 가능)
+  const diaryImages = Array.from({ length: 9 }, (_, index) => ({
+    id: index + 1,
+    imageUrl: "/assets/images/note.png",
+  }));
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100 px-6">
+    <div className="flex flex-col items-center min-h-screen bg-white px-6">
       {/* 헤더 */}
       <Header />
 
-      {/* 제목 */}
-      <h1 className="text-2xl font-bold mt-6">📖 내 일기 기록</h1>
+      {/* 🗓️ 월별 선택 네비게이션 */}
+      <div className="flex items-center justify-between w-full max-w-md mt-6">
+        <button 
+          className="btn btn-outline btn-sm"
+          onClick={() => changeMonth("prev")}
+        >
+          <FaChevronLeft className="w-4 h-4" />
+        </button>
 
-      {/* 일기 목록 */}
-      <div className="mt-4 w-full max-w-md space-y-4">
-        {diaryEntries.length > 0 ? (
-          diaryEntries.map((entry) => (
-            <div
-              key={entry.id}
-              className="card bg-white shadow-md p-4 rounded-lg cursor-pointer hover:bg-gray-200 transition"
-              onClick={() => navigate(`/diary-result/${entry.id}`)}
-            >
-              <p className="text-sm text-gray-500">{entry.date}</p>
-              <p className="font-semibold">{entry.emotion}</p>
-              <p className="text-gray-600 truncate">{entry.contentPreview}</p>
-            </div>
-          ))
-        ) : (
-          <p className="text-gray-500 text-center mt-6">작성된 일기가 없습니다.</p>
-        )}
+        <div className="text-lg sm:text-xl font-bold">
+          {selectedMonth.year}년 {selectedMonth.month}월
+        </div>
+
+        <button 
+          className="btn btn-outline btn-sm"
+          onClick={() => changeMonth("next")}
+        >
+          <FaChevronRight className="w-4 h-4" />
+        </button>
       </div>
 
-      {/* 뒤로 가기 버튼 */}
+      {/* 📌 반응형 그리드 (일기 이미지 목록) */}
+      <div className="mt-4 w-full max-w-4xl grid grid-cols-2 md:grid-cols-3 gap-4">
+        {diaryImages.map((entry) => (
+          <div
+            key={entry.id}
+            className="relative cursor-pointer transition-transform transform hover:scale-105"
+            onClick={() => setSelectedImage(entry.imageUrl)} // 이미지 클릭 시 팝업 열기
+          >
+            <img
+              src={entry.imageUrl}
+              alt={`일기 ${entry.id}`}
+              className="w-full h-auto rounded-lg  "
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* 🖼️ 선택한 이미지 팝업 */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="relative bg-white rounded-lg shadow-lg p-4 max-w-md w-full">
+            {/* 닫기 버튼 */}
+            <button
+              className="absolute top-2 right-2 text-gray-600 hover:text-black"
+              onClick={() => setSelectedImage(null)}
+            >
+              <FaTimes className="w-5 h-5" />
+            </button>
+
+            {/* 팝업 이미지 */}
+            <img
+              src={selectedImage}
+              alt="선택한 일기 이미지"
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* 🔙 뒤로 가기 버튼 */}
       <div className="mt-6">
-        <Button text="뒤로 가기" size="small" onClick={() => navigate("/")} />
+        <Button text="뒤로 가기" size="small" onClick={() => navigate("/home")} />
       </div>
     </div>
   );
