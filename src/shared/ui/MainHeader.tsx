@@ -6,6 +6,7 @@ interface HeaderProps {
   onCalendarClick?: () => void; // 캘린더 아이콘 클릭 이벤트 (props로 전달 가능)
 }
 
+
 const Header: React.FC<HeaderProps> = ({ onCalendarClick }) => {
   const navigate = useNavigate();
 
