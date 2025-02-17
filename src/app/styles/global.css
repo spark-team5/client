@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "PottaOne";
+    src: url("@/shared/assets/fonts/PottaOne-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: "Pretendard";
+    src: url("@/shared/assets/fonts/Pretendard-Regular.otf") format("opentype");
+    font-weight: 400;
+  }
+  
+  @font-face {
+    font-family: "Pretendard";
+    src: url("@/shared/assets/fonts/Pretendard-Bold.otf") format("opentype");
+    font-weight: 700;
+  }
+  
+  @font-face {
+    font-family: "Pretendard";
+    src: url("@/shared/assets/fonts/Pretendard-Light.otf") format("opentype");
+    font-weight: 300;
+  }
+  
+  body {
+    font-family: "Pretendard", sans-serif;
+  }
+  
