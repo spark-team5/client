@@ -1,5 +1,5 @@
 import React from "react";
-import kakaoLoginImg from "@/shared/assets/images/kakao_login_medium_wide.svg";
+import kakaoLoginImg from "@/shared/assets/images/kakao_login_medium_wide.png";
 
 interface KakaoLoginButtonProps {
   onClick: () => void;
@@ -11,7 +11,7 @@ export const KakaoLoginButton: React.FC<KakaoLoginButtonProps> = ({ onClick }) =
       <img
         src={kakaoLoginImg}
         alt="카카오 로그인"
-        style={{ width: '320px', height: '50px' }} // 이미지 크기 변경
+        className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto object-contain"
       />
     </button>
   );

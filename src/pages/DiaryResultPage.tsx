@@ -1,15 +1,12 @@
 import React from "react";
 import { useDiaryResult } from "@/features/diary-result";
 import { DiaryNote, EmotionImage, FoodRecommendationModal, DiaryActionButtons } from "@/features/diary-result";
-import Header from "@/shared/ui/MainHeader";
+
 const DiaryResultPage: React.FC = () => {
   const { diary, isModalOpen, openModal, closeModal } = useDiaryResult();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white px-6 relative">
-      <div className="z-30 w-full flex items-center justify-center">
-        <Header />
-      </div>
       <DiaryNote diary={diary} openModal={openModal} />
       <EmotionImage />
       <DiaryActionButtons />

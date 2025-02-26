@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDiary, BambooImage, DateInput, RecordingControls, DiaryTextArea, DiaryActionButtons } from "@/features/diary-entry";
- 
-import Header from "@/shared/ui/MainHeader";
+import SubHeader from "@/shared/ui/SubHeader";
+
 const DiaryEntryPage: React.FC = () => {
   const navigate = useNavigate();
   const { text, setText, isRecording, startRecording, stopRecording, audioURL, setAudioURL } = useDiary();
@@ -22,7 +22,7 @@ const DiaryEntryPage: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen bg-white px-6">
-      <Header />
+      <SubHeader/>
       {/* 날짜 선택 */}
       <DateInput date={date} setDate={setDate} />
 

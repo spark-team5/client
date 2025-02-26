@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import { useBamboo } from "@/app/providers/BambooContext";
 
 export const useFaceCapture = () => {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null); 
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const { dispatch } = useBamboo();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("원에 얼굴을 맞춰주세요.");
 
@@ -54,7 +56,10 @@ export const useFaceCapture = () => {
 
       video.style.display = "none";
       canvas.style.display = "block";
- 
+
+      const emotions = ["sad", "angry", "happy", "blank", "neutral"];
+      const bambooState = emotions[Math.floor(Math.random() * emotions.length)];
+      dispatch({ type: "SET_STATE", payload: bambooState });
 
       setTimeout(() => navigate("/face-result"), 2000);
     } catch (error) {

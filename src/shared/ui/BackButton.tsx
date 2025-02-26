@@ -1,17 +1,22 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; 
-import BackButtonImage from "@/shared/assets/images/icons/BackIcon.png"; // 이미지 import
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";  
+import { buttonSizeClasses } from "@/shared/lib/sizeClasses"; 
+import { ButtonSize } from "@/shared/types/ui";
 
-const BackButton: React.FC = () => {
+interface BackButtonProps {
+    size?: ButtonSize;
+}
+
+const BackButton: React.FC<BackButtonProps> = ({ size = "medium" }) => {
   const navigate = useNavigate();
 
   return (
     <button 
       onClick={() => navigate(-1)}
-      className="bg-transparent transition transform  "
-      style={{ background: "none" }}  
+      className={`bg-black rounded-full transition hover:bg-gray-700 ${buttonSizeClasses[size]}`}
     >
-      <img src={BackButtonImage} alt="Back" className="w-8 h-8" />
+      <ArrowLeft size={24} className="text-gray-600" />
     </button>
   );
 };

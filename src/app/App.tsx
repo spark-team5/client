@@ -6,8 +6,8 @@ const App: React.FC = () => {
     <>
       <div className="h-screen w-screen flex flex-col">  
  
-        <main className="flex flex-grow items-center justify-center bg-white overflow-hidden">
-          <div className="w-full max-w-7xl h-full flex items-center justify-center p-6">
+        <main className="flex flex-grow items-center justify-center bg-gray-100">
+          <div className="w-full max-w-6xl h-full flex items-center justify-center p-6">
             <AppRoutes />
           </div>
         </main> 

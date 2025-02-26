@@ -6,8 +6,7 @@ export const GuideStartButton: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="mt-10 w-full flex justify-center">
-
+    <div className="mt-6 w-full flex justify-center">
       <Button text="시작하기" size="large" onClick={() => navigate("/face-capture")} />
     </div>
   );
