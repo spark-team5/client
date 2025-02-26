@@ -2,7 +2,8 @@ import React from "react";
 
 export const GuideCard: React.FC = () => {
   return (
-    <div className="card bg-white w-full max-w-sm sm:max-w-md md:max-w-lg mt-35 flex flex-col items-center text-center">
+    <div className="card bg-white w-full max-w-sm sm:max-w-md md:max-w-lg mt-4 flex flex-col items-center text-center">
+
       <div className="card-body flex flex-col items-center text-center">
         {/* 팁 박스 */}
         <div className="badge badge-neutral px-4 py-3 text-base sm:text-sm rounded-[14px]">Tips</div>

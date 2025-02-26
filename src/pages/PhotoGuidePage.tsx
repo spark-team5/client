@@ -1,11 +1,12 @@
 import React from "react";
-import { GuideHeader, GuideMessage, GuideCard, GuideDisclaimer, GuideStartButton } from "@/features/photo-guide";
+import { GuideMessage, GuideCard, GuideDisclaimer, GuideStartButton } from "@/features/photo-guide";
+import Header from "@/shared/ui/MainHeader";
 
 const PhotoGuidePage: React.FC = () => {
   return (
-    <div className="bg-white flex flex-col items-center justify-center h-screen bg-transparent w-full relative">
+    <div className="bg-white flex flex-col items-center justify-center h-screen w-full relative gap-4">
       {/* 뒤로가기 버튼 */}
-      <GuideHeader />
+      <Header />
 
       {/* 안내 문구 */}
       <GuideMessage />

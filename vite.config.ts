@@ -6,8 +6,11 @@ import { resolve } from "path";
 
 export default defineConfig({
   resolve: {
-    alias: { "@": resolve(__dirname, "src") }, // ✅ 기존 alias 수정
+    alias: { "@": resolve(__dirname, "src") },  
   },
   plugins: [react(), tailwindcss(), tsconfigPaths()],
-  assetsInclude: ["**/*.ttf", "**/*.otf"], // ✅ 폰트 파일을 Vite 번들에 포함
+  assetsInclude: ["**/*.ttf", "**/*.otf"],  
+  server: {
+    port: 3000,  
+  },
 });

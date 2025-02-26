@@ -4,12 +4,7 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  font-weight: 400; 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -25,13 +20,13 @@ a:hover {
   color: #535bf2;
 }
 
-body {
+body { 
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  @apply bg-white;
+  font-family: "Pretendard", sans-serif;
 }
 
 h1 {
@@ -46,23 +41,20 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.dots-container div {
+  transition: transform 0.3s ease; 
 }
 
+.dots-container .active {
+  transform: translateX(50px); 
+}
+
+/* ✅ 다크 모드 스타일 제거하여 항상 흰 배경 유지 */
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
   a:hover {
     color: #747bff;
   }
@@ -111,11 +103,6 @@ button:focus-visible {
   src: url("/src/shared/assets/fonts/PottaOne-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
-}
-
-/* 기본 폰트는 Pretendard */
-body {
-  font-family: "Pretendard", sans-serif;
 }
 
 /* Potta One을 특정 요소에만 적용 */
