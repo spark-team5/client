@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({ text, onClick, className = "", size = "
     <button
       className={`w-full max-w-xs sm:max-w-sm md:max-w-md font-semibold shadow-md rounded-full
         bg-gradient-to-t from-[#A2EB4E] to-[#FFFFFF] text-black 
-        border border-black outline outline-2 outline-black
+        border border-black outline outline-[1.5px] outline-black
         hover:from-[#B4F160] hover:to-[#FFFFFF] active:from-[#92D944] active:to-[#F0FFF0]
         transition ease-in-out duration-200 relative px-4 py-2
         ${buttonSizeClasses[size]} ${className}`}

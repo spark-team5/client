@@ -7,14 +7,13 @@ import  FaceResultPage  from "@/pages/FaceResultPage";
 import  DiaryEntryPage  from "@/pages/DiaryEntryPage";
 import  DiaryResultPage  from "@/pages/DiaryResultPage";
 import  DiaryHistoryPage  from "@/pages/DiaryHistoryPage";
-import  LoginPage  from "@/pages/LoginPage";
-import { BambooProvider } from "@/app/providers/BambooContext";  
+import  LoginPage  from "@/pages/LoginPage"; 
 import  WelcomePage from "@/pages/WelcomePage";
 import { FirstPage } from "@/pages";
-  
+import { Providers } from "@/app/providers";    
 export const AppRoutes = () => {
-  return ( 
-    <BambooProvider> 
+  return (  
+    <Providers>  
     <Routes> 
     <Route path="/" element={<FirstPage />} />
       <Route path="/login" element={<LoginPage />} />
@@ -26,7 +25,7 @@ export const AppRoutes = () => {
       <Route path="/diary-entry" element={<DiaryEntryPage />} />
       <Route path="/diary-result" element={<DiaryResultPage />} />
       <Route path="/diary-history" element={<DiaryHistoryPage />} />  
-    </Routes>
-    </BambooProvider>
+    </Routes> 
+    </Providers>
   );
 };

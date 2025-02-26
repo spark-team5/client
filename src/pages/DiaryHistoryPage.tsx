@@ -5,7 +5,7 @@ import SubHeader from "@/shared/ui/SubHeader";
 import { useDiaryHistory } from "@/features/diary-history";
 import ArchiveLogo from "@/shared/ui/ArchiveLogo"; 
 import { MonthSelector, DiaryImageGrid, DiaryImagePopup } from "@/features/diary-history";
-
+import Header from "@/shared/ui/MainHeader";
 const DiaryHistoryPage: React.FC = () => {
   const navigate = useNavigate();
   const { diaryImages, selectedMonth, selectedImage, setSelectedImage, changeMonth } = useDiaryHistory();
