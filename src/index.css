@@ -46,17 +46,20 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+
+
+.dots-container div {
+  transition: transform 0.3s ease; 
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.dots-container .active {
+  transform: translateX(50px); 
 }
+
+
 
 @media (prefers-color-scheme: light) {
   :root {

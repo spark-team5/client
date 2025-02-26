@@ -10,4 +10,7 @@ export default defineConfig({
   },
   plugins: [react(), tailwindcss(), tsconfigPaths()],
   assetsInclude: ["**/*.ttf", "**/*.otf"], // ✅ 폰트 파일을 Vite 번들에 포함
+  server: {
+    port: 3000, // 포트 변경
+  },
 });
