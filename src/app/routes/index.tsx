@@ -9,12 +9,16 @@ import  DiaryResultPage  from "@/pages/DiaryResultPage";
 import  DiaryHistoryPage  from "@/pages/DiaryHistoryPage";
 import  LoginPage  from "@/pages/LoginPage";
 import { BambooProvider } from "@/app/providers/BambooContext";  
+import  WelcomePage from "@/pages/WelcomePage";
+import { FirstPage } from "@/pages";
   
 export const AppRoutes = () => {
   return ( 
     <BambooProvider> 
     <Routes> 
-      <Route path="/" element={<LoginPage />} />
+    <Route path="/" element={<FirstPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/welcome" element={<WelcomePage />} /> 
       <Route path="/home" element={<HomePage />} /> 
       <Route path="/face-capture" element={<FaceCapturePage />} />
       <Route path="/photo-guide" element={<PhotoGuidePage />} />
