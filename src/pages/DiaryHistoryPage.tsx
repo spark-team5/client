@@ -5,7 +5,8 @@ import SubHeader from "@/shared/ui/SubHeader";
 import { useDiaryHistory } from "@/features/diary-history";
 import ArchiveLogo from "@/shared/ui/ArchiveLogo"; 
 import { MonthSelector, DiaryImageGrid, DiaryImagePopup } from "@/features/diary-history";
-import Header from "@/shared/ui/MainHeader";
+import {HomeHeader } from "@/features/home"; 
+
 const DiaryHistoryPage: React.FC = () => {
   const navigate = useNavigate();
   const { diaryImages, selectedMonth, selectedImage, setSelectedImage, changeMonth } = useDiaryHistory();
@@ -13,7 +14,7 @@ const DiaryHistoryPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* 헤더 */} 
-      <SubHeader></SubHeader>
+      <HomeHeader></HomeHeader>
       {/* ️ 월별 선택 네비게이션 */}
       <ArchiveLogo />
       <MonthSelector selectedMonth={selectedMonth} changeMonth={changeMonth} />

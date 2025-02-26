@@ -1,4 +1,4 @@
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import bambooSad from "@/shared/assets/images/Character_160px.svg"; // ✅ import된 이미지
 import bambooAngry from "@/shared/assets/images/Character_160px.svg";
 import bambooHappy from "@/shared/assets/images/Character_160px.svg";
