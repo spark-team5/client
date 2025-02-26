@@ -1,9 +1,13 @@
 import React from "react";
-import { useFaceResult } from "@/features/face-result";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/providers/store";
 import { EmotionMessage, EmotionImage, FaceResultActions } from "@/features/face-result";
 
 const FaceResultPage: React.FC = () => {
-  const { bambooState, bambooMessages, bambooImages } = useFaceResult();
+  // ✅ Redux에서 상태 가져오기
+  const bambooState = useSelector((state: RootState) => state.bamboo.bambooState);
+  const bambooMessages = useSelector((state: RootState) => state.bamboo.bambooMessages);
+  const bambooImages = useSelector((state: RootState) => state.bamboo.bambooImages);
 
   return (
     <div>
