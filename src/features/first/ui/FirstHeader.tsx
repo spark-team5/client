@@ -1,6 +1,6 @@
 import React from "react";
 import Bamboo from "@/shared/assets/images/Character_160px.svg";
-import Logo from "@/shared/assets/images/Logo.svg";
+import Logo from "@/shared/ui/Logo";  
 
 const FirstHeader: React.FC = () => {
   return (
@@ -10,9 +10,12 @@ const FirstHeader: React.FC = () => {
           지친 현대인을 위한<br />사이버 대나무숲
         </div>
       </div>
-      <div className="absolute left-1/2 transform -translate-x-1/2 top-[254px] flex justify-center items-center">
-        <img src={Logo} alt="Logo" />
+      
+      {/* 로고 부분을 새 Logo 컴포넌트로 변경 */}
+      <div className="absolute left-1/2 transform -translate-x-1/2 top-[254px]">
+        <Logo />
       </div>
+
       <div className="absolute left-1/2 transform -translate-x-1/2 top-[331px] flex justify-center items-center">
         <img src={Bamboo} alt="Bamboo" />
       </div>
