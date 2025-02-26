@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBamboo } from "@/app/providers/BambooContext";
+import { detectEmotion } from "@/shared/api/faceDetection";  
 
 export const useFaceCapture = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const useFaceCapture = () => {
         videoRef.current.srcObject = stream;
       }
     } catch (err) {
-      console.error(" 웹캠 접근 오류:", err);
+      console.error("웹캠 접근 오류:", err);
       alert("카메라에 접근할 수 없습니다. 브라우저 권한을 확인하세요.");
     }
   };
@@ -36,7 +37,8 @@ export const useFaceCapture = () => {
       stream.getTracks().forEach((track) => track.stop());
     }
   };
-  
+
+  /** 얼굴 촬영 및 감정 분석 API 요청 */
   const captureAndAnalyze = async () => {
     if (!videoRef.current || !canvasRef.current) return;
 
@@ -57,14 +59,27 @@ export const useFaceCapture = () => {
       video.style.display = "none";
       canvas.style.display = "block";
 
-      const emotions = ["sad", "angry", "happy", "blank", "neutral"];
-      const bambooState = emotions[Math.floor(Math.random() * emotions.length)];
-      dispatch({ type: "SET_STATE", payload: bambooState });
+      // 캔버스에서 이미지 데이터 추출 및 변환
+      canvas.toBlob(async (blob) => {
+        if (!blob) return;
 
-      setTimeout(() => navigate("/face-result"), 2000);
-    } catch (error) {
-      console.error(" 서버 요청 실패:", error);
-      alert("서버 오류 발생! 다시 시도해주세요.");
+        const file = new File([blob], "face_capture.png", { type: "image/png" });
+
+        try {
+          // 감정 분석 API 호출
+          const result = await detectEmotion(file);
+
+          // Enum 값 기반으로 Redux 상태 업데이트
+          if (result && result.message) {
+            dispatch({ type: "SET_STATE", payload: result.message });
+          }
+
+          setTimeout(() => navigate("/face-result"), 2000);
+        } catch (error) {
+          console.error("서버 요청 실패:", error);
+          alert("서버 오류 발생");
+        }
+      }, "image/png");
     } finally {
       setLoading(false);
     }

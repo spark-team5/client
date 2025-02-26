@@ -5,7 +5,7 @@ export const useDiaryHistory = () => {
   const [selectedMonth, setSelectedMonth] = useState({ year: 2025, month: 2 });
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  /** 📌 월 변경 함수 */
+  /**  월 변경 함수 */
   const changeMonth = (direction: "prev" | "next") => {
     setSelectedMonth((prev) => {
       let newYear = prev.year;
@@ -23,10 +23,10 @@ export const useDiaryHistory = () => {
     });
   };
 
-  // 📝 임시 이미지 데이터 (월별로 다르게 설정 가능)
+  //  임시 이미지 데이터 (월별로 다르게 설정 가능)
   const diaryImages = Array.from({ length: 9 }, (_, index) => ({
     id: index + 1,
-    imageUrl: noteImage, // ✅ import된 이미지 사용
+    imageUrl: noteImage, //   import된 이미지 사용
   }));
 
   return {
