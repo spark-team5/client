@@ -1,11 +1,10 @@
 // DiaryHistoryPage.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import SubHeader from "@/shared/ui/SubHeader";
 import { useDiaryHistory } from "@/features/diary-history";
 import ArchiveLogo from "@/shared/ui/ArchiveLogo"; 
 import { MonthSelector, DiaryImageGrid, DiaryImagePopup } from "@/features/diary-history";
-import {HomeHeader } from "@/features/home"; 
+import Header from "@/shared/ui/MainHeader";
 
 const DiaryHistoryPage: React.FC = () => {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ const DiaryHistoryPage: React.FC = () => {
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* 헤더 */} 
-      <HomeHeader></HomeHeader>
+      <Header />
       {/* ️ 월별 선택 네비게이션 */}
       <ArchiveLogo />
       <MonthSelector selectedMonth={selectedMonth} changeMonth={changeMonth} />
