@@ -27,8 +27,7 @@ export const useKakaoAuth = () => {
       // 로그인 성공 후 원하는 페이지로 이동
       navigate("/home");
     } else {
-      // 로그인 실패 시 자동으로 카카오 로그인 실행
-      handleKakaoLogin();
+      navigate("/login")
     }
   }, [navigate]);
 
