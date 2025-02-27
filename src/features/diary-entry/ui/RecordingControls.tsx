@@ -16,30 +16,30 @@ export const RecordingControls: React.FC<RecordingControlsProps> = ({
   setAudioURL,
 }) => {
   return (
-    <div className=" w-full max-w-md">
+    <div className="w-full max-w-md">
       <div className="card bg-base-100 p-4">
         <div className="flex flex-col items-center">
-          {/* 녹음 버튼 */}
+          {/* 🎙️ 녹음 버튼 (가상 요소로 테두리 강제 적용) */}
           {!audioURL ? (
-            isRecording ? (
-              <button onClick={stopRecording} className="w-full max-w-40 px-4 py-2 rounded-full border-[1.5px] border-black text-black 
-             bg-gradient-to-b from-white to-[#E3E8DA] shadow-md text-lg font-bold">
-                녹음 중지
-              </button>
-            ) : (
-              <button onClick={startRecording} className="w-40 px-4 py-2 rounded-3xl border-2 border-black text-black 
-             bg-gradient-to-b from-white to-[#E3E8DA] shadow-md text-lg font-bold overflow-hidden">
-                녹음 시작
-              </button>
-            )
+            <button
+              onClick={isRecording ? stopRecording : startRecording}
+              className="relative w-40 px-4 py-2 rounded-3xl text-black 
+                         bg-gradient-to-b from-white to-[#E3E8DA] 
+                         text-lg font-bold overflow-visible before:absolute 
+                         before:inset-0  before:rounded-xl before:border-[1.5px] before:border-black"
+            >
+              {isRecording ? "녹음 중지" : "녹음 시작"}
+            </button>
           ) : (
             <button
               onClick={() => {
                 setAudioURL(null);
                 startRecording();
               }}
-              className="w-full max-w-40 px-4 py-2 rounded-full border-[1.5px] border-black text-black 
-             bg-gradient-to-b from-white to-[#E3E8DA] shadow-md text-lg font-bold"
+              className="relative w-40 px-4 py-2 rounded-3xl text-black 
+                         bg-gradient-to-b from-white to-[#E3E8DA] 
+                         text-lg font-bold overflow-visible before:absolute 
+                         before:inset-0  before:rounded-xl before:border-[1.5px] before:border-black"
             >
               다시 녹음
             </button>

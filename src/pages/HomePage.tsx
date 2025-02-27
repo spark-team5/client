@@ -18,6 +18,7 @@ const HomePage: React.FC = () => {
       <div className="absolute bottom-6 left-0 right-0 flex justify-center">
         <HomeActions />
       </div>
+      
     </div>
   );
 };

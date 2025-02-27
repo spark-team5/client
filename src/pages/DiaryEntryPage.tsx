@@ -21,7 +21,7 @@ const DiaryEntryPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen bg-[#EEFAEE] px-6">
+    <div className="flex flex-col items-center justify-center w-screen h-screen text-black bg-[#EEFAEE] px-6">
       <Header />
       <EntryContainer />
       <DiaryActionButtons onSave={handleSaveDiary} />
