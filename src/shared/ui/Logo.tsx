@@ -8,7 +8,7 @@ const Logo: React.FC = () => {
       <img 
         src={mainLogo} 
         alt="forRest Logo" 
-        className="h-15 sm:h-15 md:h-18 object-contain"
+        className="h-20 object-contain"
       /> 
 
     </div>
