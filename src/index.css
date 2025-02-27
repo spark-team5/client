@@ -2,7 +2,7 @@
 @plugin "daisyui";
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "SD PixelGoodmorning", sans-serif !important;
   line-height: 1.5;
   font-weight: 400;
 
@@ -17,7 +17,7 @@
 }
 
 a {
-  font-weight: 500;
+  font-weight: 400;
   color: #646cff;
   text-decoration: inherit;
 }
@@ -31,7 +31,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  font-family: "Pretendard", sans-serif;
+  font-family: "SD PixelGoodmorning", sans-serif !important;
 }
 
 h1 {
@@ -113,4 +113,14 @@ button {
 /* Potta One을 특정 요소에만 적용 */
 .potta {
   font-family: "Potta One", sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: "SD PixelGoodmorning", sans-serif !important;
+  }
+
+  .sd-pixel {
+    font-family: "SD PixelGoodmorning", sans-serif !important;
+  }
 }

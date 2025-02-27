@@ -19,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({ text, onClick, className = "", size = "
         transition ease-in-out duration-200 relative px-4 py-2
         ${buttonSizeClasses[size]} ${className}`}
       onClick={onClick}
+      style={{maxWidth: "none"}}
     >
       {/* 하얀색 테두리 효과 */}
       <span
