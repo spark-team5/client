@@ -13,14 +13,11 @@ const DiaryHistoryPage: React.FC = () => {
       {/* 헤더 */} 
       <div className="z-30 w-full flex items-center justify-center">
         <Header />
-      </div>
-      {/* 🗓️ 월별 선택 네비게이션 */}
+      </div> 
       <MonthSelector selectedMonth={selectedMonth} changeMonth={changeMonth} />
-
-      {/* 📌 반응형 그리드 (일기 이미지 목록) */}
+ 
       <DiaryImageGrid diaryImages={diaryImages} onSelectImage={setSelectedImage} />
-
-      {/* 🖼️ 선택한 이미지 팝업 */}
+ 
       <DiaryImagePopup selectedImage={selectedImage} onClose={() => setSelectedImage(null)} />
     </div>
   );

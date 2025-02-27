@@ -12,7 +12,9 @@ export const DateInput: React.FC<DateInputProps> = ({ date, setDate }) => {
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
-        className="input input-bordered w-104 text-center"
+        className="input input-bordered  w-screen max-w-80 text-center 
+                   bg-gradient-to-b from-white to-[#ffabf4] 
+                   rounded-full border-[1.4px] border-black shadow-md p-5"
       />
     </div>
   );
