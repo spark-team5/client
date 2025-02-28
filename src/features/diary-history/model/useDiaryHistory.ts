@@ -1,45 +1,14 @@
-// useDiaryHistory.js
 import { useState } from 'react';
 
 const exampleDiaryImages = [
-  {
-    id: 1,
-    imageUrl: "https://via.placeholder.com/150",
-    date: "0월 0일 0요일",
-    content: "일기 내용 일기 내용 일...",
-  },
-  {
-    id: 2,
-    imageUrl: "https://via.placeholder.com/150",
-    date: "1월 1일 1요일",
-    content: "새해 첫날의 일기...",
-  },
-  {
-    id: 3,
-    imageUrl: "https://via.placeholder.com/150",
-    date: "2월 2일 2요일",
-    content: "빼빼로데이",
-  },
-  {
-    id: 4,
-    imageUrl: "https://via.placeholder.com/150",
-    date: "2월 2일 2요일",
-    content: "빼빼로데이",
-  },
-  {
-    id: 5,
-    imageUrl: "https://via.placeholder.com/150",
-    date: "2월 2일 2요일",
-    content: "빼빼로데이",
-  },
 ];
 
 export const useDiaryHistory = () => {
-  const [diaryImages, setDiaryImages] = useState(exampleDiaryImages); // 예시 데이터 사용
+  const [diaryImages, setDiaryImages] = useState(exampleDiaryImages); 
   const [selectedMonth, setSelectedMonth] = useState({ year: new Date().getFullYear(), month: new Date().getMonth() + 1 });
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const changeMonth = (direction) => {
+  const changeMonth = async (direction) => {
     setSelectedMonth((prevMonth) => {
       let newYear = prevMonth.year;
       let newMonth = prevMonth.month;
@@ -57,6 +26,32 @@ export const useDiaryHistory = () => {
           newYear++;
         }
       }
+
+      // 날짜를 API에 전달하여 결과 받기
+      const dateParam = `${newYear}-${String(newMonth).padStart(2, '0')}`;
+
+      // 수정된 부분: dateParam을 사용하여 API에 요청을 보냄
+      fetch(`https://qbdffmpbayqfbgja.tunnel-pt.elice.io/diary/month?date=${dateParam}`, {
+        method: 'GET',  
+        credentials: 'include', 
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.response.result === 'SUCCESS') {
+            const diaries = data.response.code.diaries;
+            setDiaryImages(diaries.map((diary, index) => ({
+              id: index + 1,
+              imageUrl: `data:image/jpeg;base64,${diary.summaryImage}`,
+              date: new Date(diary.createdAt).toLocaleDateString(),
+              content: diary.context,
+            })));
+          } else {
+            console.error("Failed to load diaries data");
+          }
+        })
+        .catch(err => {
+          console.error("Error fetching data:", err);
+        });
 
       return { year: newYear, month: newMonth };
     });

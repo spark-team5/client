@@ -3,8 +3,14 @@ import { useDiary, DateInput, DiaryTextArea } from "@/features/diary-entry";
 import BambooRecordContainer from "@/features/diary-entry/ui/BambooRecordContainer";
 import Logo from "@/shared/ui/Logo"; // ✅ Logo 컴포넌트 추가
 
-const EntryContainer: React.FC = () => {
-  const { text, setText, isRecording, startRecording, stopRecording, audioURL, setAudioURL } = useDiary();
+
+interface EntryContainerProps {
+  setAudioURL: (url: string | null) => void;
+  audioURL: string | null;
+}
+
+const EntryContainer: React.FC<EntryContainerProps> = ({ setAudioURL,audioURL }) => {
+  const { text, setText, isRecording, startRecording, stopRecording} = useDiary();
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
 
   return (

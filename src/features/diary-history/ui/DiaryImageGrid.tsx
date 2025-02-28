@@ -1,7 +1,7 @@
 import React from "react";
 
 interface DiaryImageGridProps {
-  diaryImages: { id: number; imageUrl: string; date: string; content: string }[];
+  diaryImages: { id: number; imageUrl: string; date: string; content: string }[]; 
   onSelectImage: (imageUrl: string) => void;
 }
 
@@ -24,7 +24,11 @@ export const DiaryImageGrid: React.FC<DiaryImageGridProps> = ({ diaryImages, onS
                 {entry.date}
               </span>
             </div>
-            <img className="w-[145px] h-[145px] rounded-2xl border border-black" src={entry.imageUrl} alt={`일기 ${entry.id}`} />
+            <img 
+              className="w-[145px] h-[145px] rounded-2xl border border-black" 
+              src={`data:image/jpeg;base64,${entry.imageUrl}`} // Base64로 이미지 처리
+              alt={`일기 ${entry.id}`} 
+            />
             <div className="w-[145px] h-[38px] text-[#201f1e] text-sm font-normal text-center">
               {entry.content}
             </div>

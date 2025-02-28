@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { detectEmotion } from "@/shared/api/faceDetection";  
 import { useNavigate } from "react-router-dom"; 
 
 export const useFaceCapture = () => {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null); 
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("원에 얼굴을 맞춰주세요.");
 
@@ -54,12 +55,22 @@ export const useFaceCapture = () => {
 
       video.style.display = "none";
       canvas.style.display = "block";
- 
 
-      setTimeout(() => navigate("/face-result"), 2000);
-    } catch (error) {
-      console.error("🚨 서버 요청 실패:", error);
-      alert("서버 오류 발생! 다시 시도해주세요.");
+      const imageBase64 = canvas.toDataURL("image/png").split(",")[1];
+      
+      try {
+        const result = await detectEmotion(imageBase64);
+        console.log("✅ 감정 분석 결과:", result);
+
+        if (result && result.statusMessage) {
+          setMessage(result.statusMessage);
+        }
+
+        setTimeout(() => navigate("/face-result"), 2000);
+      } catch (error) {
+        console.error("서버 요청 실패:", error);
+        setMessage("서버 오류 발생");
+      }
     } finally {
       setLoading(false);
     }

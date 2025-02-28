@@ -25,7 +25,7 @@ const initialState: BambooState = {
     happy: "죽순이 자라서 기뻐요!",
     sad: "죽순이 힘들어 보여요...",
     angry: "죽순이 화가 났어요!",
-    blank: "아직 숲에 아무도 없어요",
+    blank: "죽순이는 무표정이에요 😐"
   },
 };
 

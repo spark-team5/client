@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/app/providers/store";
 import { setBambooState } from "@/app/config/redux/bambooSlice";
@@ -19,30 +19,56 @@ export const BambooContainer: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [complete, setComplete] = useState(false);
+  const [hasJuksooni, setHasJuksooni] = useState<boolean | null>(null); // 상태 추가
 
-  const handleClick = () => {
-    setLoading(true);
-    setProgress(0);
-
-    let interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setComplete(true); 
-            dispatch(setBambooState("happy"));  // ✅ Redux 상태 변경
-          }, 500);
-          return 100;
+  useEffect(() => {
+    // 죽순이 상태 확인 API 호출
+    fetch("https://qbdffmpbayqfbgja.tunnel-pt.elice.io/api/juksooni/status",{
+      credentials: "include"
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.hasJuksooni) {
+          setHasJuksooni(data.hasJuksooni);
+          dispatch(setBambooState("blank"));
+          setComplete(true);
         }
-        return prev + 20;
+        else{
+          setHasJuksooni(false)
+          setComplete(false);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching status:", error);
       });
-    }, 200);
+  }, []);
+
+  const handleClickAdopt = () => {
+    // 죽순 분양하기 버튼 클릭 시
+    fetch("https://qbdffmpbayqfbgja.tunnel-pt.elice.io/api/juksooni/adopt", {
+      method: "POST",
+      credentials: "include", // 세션 또는 쿠키 기반 인증 필요 시 추가
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "CREATED") {
+          dispatch(setBambooState("happy")); // 상태를 happy로 변경
+          setComplete(true); // 완료 상태로 설정
+        }
+      })
+      .catch((error) => {
+        console.error("Error adopting Juksooni:", error);
+      });
   };
+
 
   return (
     <div className="relative flex flex-col justify-center items-center min-h-screen w-full px-4">
       {/* BambooContainer */}
-      <div className="relative flex flex-col items-center justify-center w-full max-w-[300px] sm:max-w-[340px] md:max-w-[480px] lg:max-w-[600px] aspect-[3/2] min-w-[330px] border-[1.5px] border-black p-4 sm:p-6 rounded-3xl z-20" style={{ backgroundColor: "#EAF4CE" }}>
+      <div
+        className="relative flex flex-col items-center justify-center w-full max-w-[300px] sm:max-w-[340px] md:max-w-[480px] lg:max-w-[600px] aspect-[3/2] min-w-[330px] border-[1.5px] border-black p-4 sm:p-6 rounded-3xl z-20"
+        style={{ backgroundColor: "#EAF4CE" }}
+      >
         {/* Checker 이미지 (배경) 또는 하얀색 배경 */}
         <div className="absolute inset-0 p-2 rounded-3xl">
           {complete ? (
@@ -61,33 +87,18 @@ export const BambooContainer: React.FC = () => {
           <EmotionImage imageUrl={bambooImages[bambooState]} />
         ) : (
           <>
-            {/* 로딩 중일 때 UI */}
-            {loading ? (
-              <div className="relative z-10 flex flex-col items-center w-full">
-                <p className="text-gray-600 text-lg font-semibold text-center mb-4">
-                  Loading...
-                </p>
-                {/* 로딩 바 */}
-                <div className="relative w-[80%] h-6 bg-white border-[1.5px] border-black rounded-lg overflow-hidden">
-                  <div
-                    className="absolute top-0 left-0 h-full bg-gradient-to-r transition-all duration-200"
-                    style={{
-                      width: `${progress}%`,
-                      background: "linear-gradient(to bottom, #FFFFFF, #A2EB4E)", // ✅ 올바르게 수정
-                    }}
-                  />
-                </div>
-              </div>
+            {/* 상태에 따라 다르게 처리 */}
+            {hasJuksooni === null ? (
+              <p>Loading...</p> // 상태 확인 중일 때
+            ) : hasJuksooni ? (
+              <EmotionImage imageUrl={bambooImages[bambooState]} />
             ) : (
-              // 기본 상태 (분양받지 않았을 때)
-              <div className="relative z-10 flex flex-col items-center">
-                <p className="text-gray-600 text-lg font-semibold text-center mb-4">
-                  {bambooMessages[bambooState]}
-                </p>
-
-                {/* 버튼 */}
-                <Button text="죽순 분양받기" size="medium" onClick={handleClick} />
-              </div>
+              <>
+                {/* 죽순 분양하기 버튼 */}
+                <div className="relative z-10 flex flex-col items-center">
+                  <Button text="죽순 분양하기" size="medium" onClick={handleClickAdopt} />
+                </div>
+              </>
             )}
           </>
         )}
@@ -97,7 +108,7 @@ export const BambooContainer: React.FC = () => {
       {complete && (
         <div className="absolute top-6/8 left-1/2 w-[325px] transform -translate-x-1/2 -translate-y-1/2 z-20 ">
           <MessageContainer />
-        </div> 
+        </div>
       )}
     </div>
   );

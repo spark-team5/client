@@ -33,6 +33,7 @@ export const RecordingControls: React.FC<RecordingControlsProps> = ({
           ) : (
             <button
               onClick={() => {
+                alert(audioURL)
                 setAudioURL(null);
                 startRecording();
               }}

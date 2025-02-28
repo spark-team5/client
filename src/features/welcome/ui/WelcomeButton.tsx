@@ -6,7 +6,7 @@ export const WelcomeButton: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/welcome"); // 버튼 클릭 시 "/welcome" 경로로 이동
+    navigate("/home")
   };
 
   return (

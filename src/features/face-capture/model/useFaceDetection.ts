@@ -66,7 +66,7 @@ export const useFaceCapture = () => {
         const file = new File([blob], "face_capture.png", { type: "image/png" });
 
         try {
-          // 감정 분석 API 호출
+      
           const result = await detectEmotion(file);
 
           // Enum 값 기반으로 Redux 상태 업데이트
