@@ -8,7 +8,7 @@ const HomeLogo: React.FC = () => {
       <img 
         src={homeLogo} 
         alt="home Logo" 
-        className="h-24 object-contain"
+        className="w-[197px] h-[76px] object-contain"
       /> 
 
     </div>

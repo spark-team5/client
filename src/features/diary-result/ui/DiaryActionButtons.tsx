@@ -6,7 +6,7 @@ export const DiaryActionButtons: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="mt-3 w-full max-w-xs flex flex-col space-y-3 h-11"> 
+    <div className="mt-3 w-full flex flex-col items-center justify-center space-y-3">
       <Button text="홈으로 이동" size="small" onClick={() => navigate("/home")} />
     </div>
   );

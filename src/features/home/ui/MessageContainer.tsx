@@ -8,8 +8,10 @@ const MessageContainer: React.FC = () => {
   const bambooMessages = useSelector((state: RootState) => state.bamboo.bambooMessages);
 
   return (
-    <div className="w-full max-w-[600px] aspect-[7/2] text-sm font-semibold text-black text-center border-[1.5px] border-black rounded-2xl px-4 py-2 bg-white flex items-center justify-center h-full">
+    <div className="bg-[#ADDAAF] border-black border-[1.5px] rounded-2xl p-1 overflow-hidden">
+    <div className="w-full max-w-[600px] aspect-[7/1.4] text-sm font-semibold text-black text-center   rounded-2xl px-4 py-2 bg-white flex items-center justify-center h-full">
       {bambooMessages[bambooState]}
+    </div>
     </div>
   );
 };

@@ -7,5 +7,6 @@ export { default as DiaryResultPage } from "./DiaryResultPage";
 export { default as DiaryHistoryPage } from "./DiaryHistoryPage";
 export { default as LoginPage } from "./LoginPage";
 export { default as WelcomePage} from "./WelcomePage"
-export { default as FirstPage} from "./FirstPage"
+export { default as EmotionResultPage} from "./EmotionResultPage"
+export { default as FirstPage} from "./FirstPage" 
  

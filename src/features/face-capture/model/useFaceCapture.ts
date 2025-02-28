@@ -1,13 +1,32 @@
 import { useEffect, useRef, useState } from "react";
+<<<<<<< HEAD
 import { detectEmotion } from "@/shared/api/faceDetection";  
 import { useNavigate } from "react-router-dom"; 
+=======
+import { useNavigate } from "react-router-dom";  
+import { useDispatch } from "react-redux";
+import { setBambooState } from "@/app/config/redux/bambooSlice"; // ✅ Redux 액션 추가
+import axios from "axios";
+>>>>>>> 4aa8cf12ad52f894695c51cb2091865b8c1e1822
 
 export const useFaceCapture = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // ✅ Redux dispatch 사용
+
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("원에 얼굴을 맞춰주세요.");
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+  const apiClient = axios.create({
+    baseURL: API_BASE_URL,
+    timeout: 10000,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 
   useEffect(() => {
     startCamera();
@@ -24,7 +43,7 @@ export const useFaceCapture = () => {
         videoRef.current.srcObject = stream;
       }
     } catch (err) {
-      console.error("🚨 웹캠 접근 오류:", err);
+      console.error("웹캠 접근 오류:", err);
       alert("카메라에 접근할 수 없습니다. 브라우저 권한을 확인하세요.");
     }
   };
@@ -36,13 +55,16 @@ export const useFaceCapture = () => {
     }
   };
 
+  /** 얼굴 촬영 및 감정 분석 API 요청 */
   const captureAndAnalyze = async () => {
+     
     if (!videoRef.current || !canvasRef.current) return;
 
     setLoading(true);
     setMessage("분석 중...");
-
+     
     try {
+       
       const video = videoRef.current;
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
@@ -56,6 +78,7 @@ export const useFaceCapture = () => {
       video.style.display = "none";
       canvas.style.display = "block";
 
+<<<<<<< HEAD
       const imageBase64 = canvas.toDataURL("image/png").split(",")[1];
       
       try {
@@ -71,6 +94,36 @@ export const useFaceCapture = () => {
         console.error("서버 요청 실패:", error);
         setMessage("서버 오류 발생");
       }
+=======
+      canvas.toBlob(async (blob) => {
+        if (!blob) return;
+
+        const formData = new FormData();
+        formData.append("image", blob, "face_capture.png");
+
+        const faceResponse = await apiClient.post("/api/face/detect", formData);
+        console.log("얼굴 감지 결과:", faceResponse.data);
+
+        // ✅ 얼굴 좌표 가져오기
+        const faceBox = faceResponse.data?.faceBox;
+        if (!faceBox || faceBox.length === 0) {
+          setMessage("얼굴을 인식하지 못했습니다. 다시 시도하세요.");
+          return;
+        }
+
+        // ✅ 감정 분석 API 요청
+        const emotionResponse = await apiClient.post("/api/emotion/result", { faceBox });
+        console.log("감정 분석 결과:", emotionResponse.data);
+
+        const detectedEmotion = emotionResponse.data.emotion.toLowerCase(); // ✅ 감정 상태 변환
+
+        // ✅ Redux에 감정 상태 저장
+        dispatch(setBambooState(detectedEmotion));
+
+        // ✅ 2초 후 결과 페이지로 이동
+        setTimeout(() => navigate("/face-result"), 2000);
+      }, "image/png");
+>>>>>>> 4aa8cf12ad52f894695c51cb2091865b8c1e1822
     } finally {
       setLoading(false);
     }
