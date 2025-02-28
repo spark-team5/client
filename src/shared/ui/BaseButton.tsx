@@ -12,11 +12,11 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ text, onClick, className = "", size = "medium" }) => {
   return (
     <button
-      className={`w-full max-w-xs sm:max-w-sm md:max-w-md font-semibold shadow-md rounded-full
-        bg-gradient-to-t from-[#A2EB4E] to-[#FFFFFF] text-black 
+      className={`w-40 px-6 py-3 font-semibold 
+        bg-gradient-to-t from-[#A2EB4E] to-[#FFFFFF] text-black rounded-[50px] 
         border border-black outline outline-[1.5px] outline-black
         hover:from-[#B4F160] hover:to-[#FFFFFF] active:from-[#92D944] active:to-[#F0FFF0]
-        transition ease-in-out duration-200 relative px-4 py-2
+        transition ease-in-out duration-200 relative z-20
         ${buttonSizeClasses[size]} ${className}`}
       onClick={onClick}
     >
@@ -24,16 +24,16 @@ const Button: React.FC<ButtonProps> = ({ text, onClick, className = "", size = "
       <span
         className="absolute inset-0 flex items-center justify-center font-semibold"
         style={{
-          WebkitTextStroke: "2px white", // 정확한 외부 테두리
-          WebkitTextFillColor: "black",  // 내부 텍스트는 검정색
+          WebkitTextStroke: "2px white", // 외부 테두리 (흰색)
+          WebkitTextFillColor: "black",  // 내부 텍스트 (검정색)
           fontSize: "inherit",
-          zIndex: "10", // 검정색 텍스트보다 위로 배치
+          zIndex: "10", // 검정 텍스트보다 위
         }}
       >
         {text}
       </span>
 
-      {/* 검정색 텍스트 (별개로 유지) */}
+      {/* 검정색 텍스트 */}
       <span className="relative text-black font-semibold z-20">{text}</span>
     </button>
   );

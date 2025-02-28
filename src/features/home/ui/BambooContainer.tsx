@@ -42,7 +42,13 @@ export const BambooContainer: React.FC = () => {
   return (
     <div className="relative flex flex-col justify-center items-center min-h-screen w-full px-4">
       {/* BambooContainer */}
-      <div className="relative flex flex-col items-center justify-center w-full max-w-[300px] sm:max-w-[340px] md:max-w-[480px] lg:max-w-[600px] aspect-[3/2] min-w-[330px] border-[1.5px] border-black p-4 sm:p-6 rounded-3xl z-20" style={{ backgroundColor: "#EAF4CE" }}>
+      <div
+  className="relative flex flex-col items-center justify-center w-full 
+             max-w-[300px] sm:max-w-[340px] md:max-w-[480px] lg:max-w-[600px] 
+             aspect-[3/2] min-w-[330px] border-[1.5px] border-black p-4 sm:p-6 
+             rounded-3xl z-20 bg-gradient-to-b from-[#EAF4CE] to-white"
+>
+
         {/* Checker 이미지 (배경) 또는 하얀색 배경 */}
         <div className="absolute inset-0 p-2 rounded-3xl">
           {complete ? (

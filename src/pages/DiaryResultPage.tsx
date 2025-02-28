@@ -2,6 +2,7 @@ import React from "react";
 import { useDiaryResult } from "@/features/diary-result";
 import { DiaryContainer, EmotionImage, FoodRecommendationModal, DiaryActionButtons } from "@/features/diary-result";
 import Header from "@/shared/ui/MainHeader";
+
 const DiaryResultPage: React.FC = () => {
   const {  isModalOpen,   closeModal } = useDiaryResult(); 
   return (
@@ -11,7 +12,8 @@ const DiaryResultPage: React.FC = () => {
         <Header />
       </div>
       <DiaryContainer  /> 
-      <DiaryActionButtons />
+      {/* <DiaryActionButtons />*/}
+       
       <FoodRecommendationModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
