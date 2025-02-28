@@ -13,6 +13,7 @@ export const DiaryActionButtons: React.FC<DiaryActionButtonsProps> = ({ onSave }
     <div className="mt-5 w-full max-w-xs flex flex-col space-y-2">
       <Button text="그림일기 생성하기" size="small" onClick={onSave} />
     </div>
+    </div>
   );
 };
 

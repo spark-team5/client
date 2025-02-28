@@ -1,13 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-<<<<<<< HEAD
-import { detectEmotion } from "@/shared/api/faceDetection";  
-import { useNavigate } from "react-router-dom"; 
-=======
 import { useNavigate } from "react-router-dom";  
 import { useDispatch } from "react-redux";
 import { setBambooState } from "@/app/config/redux/bambooSlice"; // ✅ Redux 액션 추가
 import axios from "axios";
->>>>>>> 4aa8cf12ad52f894695c51cb2091865b8c1e1822
 
 export const useFaceCapture = () => {
   const navigate = useNavigate();
@@ -78,23 +73,6 @@ export const useFaceCapture = () => {
       video.style.display = "none";
       canvas.style.display = "block";
 
-<<<<<<< HEAD
-      const imageBase64 = canvas.toDataURL("image/png").split(",")[1];
-      
-      try {
-        const result = await detectEmotion(imageBase64);
-        console.log("✅ 감정 분석 결과:", result);
-
-        if (result && result.statusMessage) {
-          setMessage(result.statusMessage);
-        }
-
-        setTimeout(() => navigate("/face-result"), 2000);
-      } catch (error) {
-        console.error("서버 요청 실패:", error);
-        setMessage("서버 오류 발생");
-      }
-=======
       canvas.toBlob(async (blob) => {
         if (!blob) return;
 
@@ -123,7 +101,6 @@ export const useFaceCapture = () => {
         // ✅ 2초 후 결과 페이지로 이동
         setTimeout(() => navigate("/face-result"), 2000);
       }, "image/png");
->>>>>>> 4aa8cf12ad52f894695c51cb2091865b8c1e1822
     } finally {
       setLoading(false);
     }
