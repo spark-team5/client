@@ -1,9 +1,11 @@
-# forRest — Emotion-Based Illustrated Diary
+# forRest, Emotion-Based Illustrated Diary
 
 forRest is a service that analyzes emotional states through facial recognition and voice recording to create personalized illustrated diaries.  
 It’s an AI-powered journal designed to help users reflect on their emotions and promote emotional wellness.
 
-![forRest](./images/hero.png)
+<div align="center">
+  <img width="563" height="543" alt="Image" src="https://github.com/user-attachments/assets/5d2e15b8-e817-466b-aad5-d33c54f4e260" />
+</div>
 
 
 
@@ -34,7 +36,7 @@ As the sole frontend developer working under a tight timeline with multiple API 
 
 ## Architecture
 
-![Project Structure](./images/structure.png)
+<img width="679" height="349" alt="Image" src="https://github.com/user-attachments/assets/6155e859-8265-49a7-90fe-50db2b432758" />
 
 
 
@@ -100,19 +102,19 @@ Additional notes and learnings are documented here:
 
 ### Diary Creation Flow
 
-![Diary Creation Flow](./images/flow.png)
+<img width="899" height="512" alt="Image" src="https://github.com/user-attachments/assets/0a85e2e4-2d0a-4dd2-9255-5a93b1df5547" />
 
 ### Diary Management
 
-![Diary Management](./images/manage.png)
+<img width="880" height="494" alt="Image" src="https://github.com/user-attachments/assets/1c608c1e-21d6-492b-b8ed-28a8fab8d492" />
 
 ### Emotion Analysis
 
-![Emotion Analysis](./images/analysis.png)
+<img width="883" height="505" alt="Image" src="https://github.com/user-attachments/assets/83910cf0-7bc5-4bfd-bf52-29af72e2869e" />
 
 ### Juksuni’s Emotion Variations
 
-![Character Emotion Variations](./images/character.png)
+<img width="865" height="499" alt="Image" src="https://github.com/user-attachments/assets/b51aec8d-dcbd-4c3c-9020-42844673039d" />
 
 
 
