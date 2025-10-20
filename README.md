@@ -31,7 +31,7 @@ As the sole frontend developer working under a tight timeline with multiple API 
 - Icons: lucide-react, react-icons  
 - Animations: Framer Motion  
 - UI Components: react-datepicker, react-swipeable  
-
+- Figma : [Link](https://www.figma.com/design/pQj9iQaxzfDRhJzi4PQJCB/Untitled?node-id=0-1&t=iPdVHsCdsR4vQglu-1)
 
 
 ## Architecture
