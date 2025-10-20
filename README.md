@@ -35,8 +35,45 @@ As the sole frontend developer working under a tight timeline with multiple API 
 
 
 ## Architecture
-
-<img width="679" height="349" alt="Image" src="https://github.com/user-attachments/assets/6155e859-8265-49a7-90fe-50db2b432758" />
+```
+SPARK-CLIENT
+│
+├── src/
+│ ├── app/
+│ │ ├── config/
+│ │ │ ├── redux/ # Redux state management configuration
+│ │ │ ├── providers/ # Global context and state management
+│ │ │ └── routes/ # Routing setup
+│ │ ├── styles/ # Global style configuration
+│ │ ├── App.tsx
+│ │ └── index.tsx
+│ │
+│ ├── entities/ # Domain entities
+│ ├── features/ # Main feature modules
+│ │ ├── auth/ # Authentication features
+│ │ ├── diary-entry/ # Diary writing feature
+│ │ ├── diary-history/ # Diary history viewing
+│ │ └── diary-result/ # Analyzed diary results
+│ │
+│ ├── pages/ # Page components
+│ │ ├── face-capture/ # Face capture feature
+│ │ ├── face-result/ # Face analysis result page
+│ │ ├── first/ # First-time setup screen
+│ │ ├── home/ # Home page
+│ │ └── photo-guide/ # Photo capture guide
+│ │
+│ ├── shared/ # Shared modules and utilities
+│ │ ├── api/ # API request modules
+│ │ ├── assets/ # Static assets
+│ │ ├── fonts/
+│ │ ├── images/
+│ │ ├── lib/ # Utility functions
+│ │ ├── types/ # TypeScript type definitions
+│ │ └── ui/ # Shared UI components
+│ │
+│ ├── index.css
+│ └── main.tsx
+```
 
 
 
