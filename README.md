@@ -154,16 +154,4 @@ Additional notes and learnings are documented here:
 <img width="865" height="499" alt="Image" src="https://github.com/user-attachments/assets/b51aec8d-dcbd-4c3c-9020-42844673039d" />
 
 
-
-## Contributions
-
-### Frontend Development
-- Designed and implemented a scalable, modular UI/UX architecture  
-- Built reusable component-based interfaces  
-- Managed complex global states (emotion data, user input, API responses) using Redux  
-
-### Project Management
-- Planned and defined the service concept focused on self-care and emotional recovery  
-- Designed the overall user flow and feature structure  
-- Collaborated with backend developers and designers, handled scheduling, API documentation, and final presentation  
-
+ 
